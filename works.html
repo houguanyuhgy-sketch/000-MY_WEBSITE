@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arts - GaryHou's Arts</title>
+    <!-- 华为鸿蒙字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=HarmonyOS+Sans:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .works-container {
+            width: 100%;
+            height: calc(100vh - 61px);
+            margin-top: 61px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            background-color: rgb(15, 16, 17);
+        }
+
+        #works-canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: default;
+        }
+        
+        #works-canvas.work-hover {
+            cursor: pointer;
+        }
+
+        .work-item {
+            position: absolute;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .work-item:hover {
+            transform: scale(1.1);
+        }
+
+        .work-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #333333;
+            background: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <!-- 极简风格导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">GaryHou</a>
+            </div>
+            <div class="nav-right">
+                <div class="menu">
+                    <button class="menu-toggle" aria-label="菜单" id="menu-toggle">
+                        <span>Menu</span>
+                    </button>
+                    <div class="menu-overlay" id="menu-overlay">
+                        <div class="menu-panel">
+                            <button class="menu-close" id="menu-close">CLOSE</button>
+                            <nav class="menu-nav">
+                                <a href="works.html" class="menu-nav-link">ARTS</a>
+                                <a href="architecture.html" class="menu-nav-link">Architecture</a>
+                                <a href="about.html" class="menu-nav-link">About</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3D环形作品展示 -->
+    <div class="works-container">
+        <canvas id="works-canvas"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="works-data.js"></script>
+    <script src="works.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - GaryHou's Arts</title>
+    <!-- 华为鸿蒙字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=HarmonyOS+Sans:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 100px 30px;
+        }
+
+        .about-title {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 60px;
+            color: #ffffff;
+            letter-spacing: -1px;
+            font-family: 'HarmonyOS Sans', sans-serif;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 300;
+            font-family: 'HarmonyOS Sans', sans-serif;
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 20px;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+
+        .contact-text {
+            color: #ffffff;
+        }
+
+        .email-form {
+            margin-top: 60px;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .email-input {
+            flex: 1;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-family: 'HarmonyOS Sans', sans-serif;
+            font-weight: 300;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .email-input:focus {
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .email-submit {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-family: 'HarmonyOS Sans', sans-serif;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .email-submit:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                padding: 60px 20px;
+            }
+
+            .about-title {
+                font-size: 36px;
+                margin-bottom: 40px;
+            }
+
+            .contact-item {
+                font-size: 16px;
+            }
+
+            .form-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .email-submit {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 极简风格导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">GaryHou</a>
+            </div>
+            <div class="nav-right">
+                <div class="menu">
+                    <button class="menu-toggle" aria-label="菜单" id="menu-toggle">
+                        <span>Menu</span>
+                    </button>
+                    <div class="menu-overlay" id="menu-overlay">
+                        <div class="menu-panel">
+                            <button class="menu-close" id="menu-close">CLOSE</button>
+                            <nav class="menu-nav">
+                                <a href="works.html" class="menu-nav-link">ARTS</a>
+                                <a href="architecture.html" class="menu-nav-link">Architecture</a>
+                                <a href="about.html" class="menu-nav-link">About</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 关于页面内容 -->
+    <main class="about-content">
+        <h1 class="about-title">About</h1>
+        <ul class="contact-list">
+            <li class="contact-item">
+                <img src="images/wechat.png" alt="WeChat" class="contact-icon" style="width: 24px; height: 24px; object-fit: contain;">
+                <span class="contact-text">gary649666860</span>
+            </li>
+            <li class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="contact-text">hou.guan.yu@hotmail.com</span>
+            </li>
+            <li class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="currentColor"/>
+                </svg>
+                <a href="https://www.instagram.com/hou.guan.yu/" target="_blank" class="contact-text" style="text-decoration: none; color: inherit;">Instagram</a>
+            </li>
+            <li class="contact-item">
+                <img src="images/redbook.png" alt="Redbook" class="contact-icon" style="width: 24px; height: 24px; object-fit: contain;">
+                <span class="contact-text">Redbook: gary649666860</span>
+            </li>
+            <li class="contact-item">
+                <img src="images/Threads.png" alt="Threads" class="contact-icon" style="width: 24px; height: 24px; object-fit: contain;">
+                <span class="contact-text">Threads: hou.guan.yu</span>
+            </li>
+        </ul>
+        
+        <!-- 邮箱联系表单 -->
+        <form class="email-form" id="email-form">
+            <div class="form-group">
+                <input type="email" id="contact-email" class="email-input" placeholder="Your email" required>
+                <button type="submit" class="email-submit">Send</button>
+            </div>
+        </form>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+

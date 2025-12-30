@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture - GaryHou's Arts</title>
+    <!-- 华为鸿蒙字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=HarmonyOS+Sans:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .architecture-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 30px;
+            box-sizing: border-box;
+        }
+
+        .architecture-grid-wrapper {
+            width: calc((1200px - 60px) * 0.8);
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        @media (max-width: 1260px) {
+            .architecture-grid-wrapper {
+                width: 100%;
+            }
+        }
+
+        .architecture-item {
+            display: flex;
+            flex-direction: column;
+            aspect-ratio: 1;
+        }
+
+        .architecture-image {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: cover;
+            margin-bottom: 8px;
+            background: #1a1a1a;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+            display: block;
+        }
+
+        .architecture-item:hover .architecture-image {
+            filter: grayscale(0%);
+        }
+
+        .architecture-grid:hover .architecture-item:not(:hover) .architecture-image {
+            filter: grayscale(100%);
+        }
+
+        .architecture-title {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 4px;
+            font-family: 'HarmonyOS Sans', sans-serif;
+            font-weight: 300;
+        }
+
+        .architecture-date {
+            font-size: 12px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 6px;
+            font-family: 'HarmonyOS Sans', sans-serif;
+            font-weight: 300;
+        }
+
+        .architecture-description {
+            font-size: 13px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 300;
+            font-family: 'HarmonyOS Sans', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .architecture-content {
+                padding: 60px 20px;
+            }
+
+            .architecture-grid-wrapper {
+                width: 100%;
+            }
+
+            .architecture-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .architecture-item {
+                aspect-ratio: auto;
+            }
+
+            .architecture-description {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 极简风格导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">GaryHou</a>
+            </div>
+            <div class="nav-right">
+                <div class="menu">
+                    <button class="menu-toggle" aria-label="菜单" id="menu-toggle">
+                        <span>Menu</span>
+                    </button>
+                    <div class="menu-overlay" id="menu-overlay">
+                        <div class="menu-panel">
+                            <button class="menu-close" id="menu-close">CLOSE</button>
+                            <nav class="menu-nav">
+                                <a href="works.html" class="menu-nav-link">ARTS</a>
+                                <a href="architecture.html" class="menu-nav-link">Architecture</a>
+                                <a href="about.html" class="menu-nav-link">About</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Architecture内容 -->
+    <main class="architecture-content">
+        <div class="architecture-grid-wrapper">
+            <div class="architecture-grid" id="architecture-grid">
+                <!-- 建筑项目将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="architecture-data.js"></script>
+    <script>
+        // 压缩图片到一半分辨率
+        function compressImage(img, callback) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 设置canvas尺寸为原图的一半
+            canvas.width = img.naturalWidth / 2;
+            canvas.height = img.naturalHeight / 2;
+            
+            // 绘制压缩后的图片
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            
+            // 转换为blob URL
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                callback(url);
+            }, 'image/jpeg', 0.9);
+        }
+        
+        // 动态生成建筑项目网格
+        const grid = document.getElementById('architecture-grid');
+        
+        // 验证图片是否存在，只保留有效的项目
+        function validateImage(imagePath) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = imagePath;
+            });
+        }
+        
+        // 验证所有图片，收集有效项目
+        async function loadValidItems() {
+            const validItems = [];
+            
+            for (const item of architectureData) {
+                const isValid = await validateImage(item.imagePath);
+                if (isValid) {
+                    validItems.push(item);
+                    // 如果已经有21个有效项目，就停止检查
+                    if (validItems.length >= 21) {
+                        break;
+                    }
+                }
+            }
+            
+            // 只取前21个有效项目
+            const itemsToShow = validItems.slice(0, 21);
+            
+            // 渲染所有有效项目
+            itemsToShow.forEach((item) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'architecture-item';
+                
+                const img = document.createElement('img');
+                img.className = 'architecture-image';
+                img.alt = item.title;
+                img.src = item.imagePath;
+                
+                // 加载原图后压缩
+                img.onload = function() {
+                    if (this.naturalWidth && this.naturalHeight) {
+                        try {
+                            compressImage(this, function(compressedUrl) {
+                                img.src = compressedUrl;
+                            });
+                        } catch (e) {
+                            console.error('图片压缩失败:', e);
+                        }
+                    }
+                };
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'architecture-title';
+                titleDiv.textContent = item.title;
+                
+                const dateDiv = document.createElement('div');
+                dateDiv.className = 'architecture-date';
+                dateDiv.textContent = item.date;
+                
+                const descDiv = document.createElement('div');
+                descDiv.className = 'architecture-description';
+                descDiv.textContent = item.description;
+                
+                itemElement.appendChild(img);
+                itemElement.appendChild(titleDiv);
+                itemElement.appendChild(dateDiv);
+                itemElement.appendChild(descDiv);
+                
+                grid.appendChild(itemElement);
+            });
+        }
+        
+        // 开始加载
+        loadValidItems();
+    </script>
+</body>
+</html>
+
+
