@@ -67,8 +67,8 @@ class WorksRing {
                 loadedCount++;
                 work.image = img;
                 // 保存图片的实际尺寸和宽高比
-                work.imageWidth = img.naturalWidth || img.width;
-                work.imageHeight = img.naturalHeight || img.height;
+                work.imageWidth = img.naturalWidth || img.width || 200;
+                work.imageHeight = img.naturalHeight || img.height || 200;
                 work.aspectRatio = work.imageWidth / work.imageHeight;
                 console.log(`✓ Image ${index + 1} loaded: ${work.imagePath}, size: ${work.imageWidth}x${work.imageHeight}, ratio: ${work.aspectRatio.toFixed(2)}`);
             };
@@ -121,6 +121,11 @@ class WorksRing {
             
             // 设置图片源（先尝试编码路径）
             img.src = encodedPath;
+            
+            // 如果图片已经加载完成（移动端可能已缓存），立即触发onload
+            if (img.complete && img.naturalWidth > 0) {
+                img.onload();
+            }
         });
     }
     

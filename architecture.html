@@ -244,16 +244,30 @@
                 const img = document.createElement('img');
                 img.className = 'architecture-image';
                 img.alt = item.title;
-                img.src = item.imagePath;
                 
                 // 确保图片加载完成后再显示，避免闪烁
                 img.onload = function() {
                     this.style.opacity = '1';
                 };
                 
+                // 处理图片加载错误
+                img.onerror = function() {
+                    this.style.opacity = '1'; // 即使加载失败也显示（避免一直透明）
+                };
+                
                 // 初始设置为透明，加载完成后显示
                 img.style.opacity = '0';
                 img.style.transition = 'opacity 0.3s ease';
+                
+                // 设置图片源（在事件监听器设置之后）
+                img.src = item.imagePath;
+                
+                // 如果图片已经缓存并加载完成，立即显示（使用 setTimeout 确保在设置 src 之后检查）
+                setTimeout(() => {
+                    if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+                        img.style.opacity = '1';
+                    }
+                }, 0);
                 
                 const titleDiv = document.createElement('div');
                 titleDiv.className = 'architecture-title';
