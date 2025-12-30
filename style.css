@@ -13,6 +13,9 @@ body {
     font-family: 'HarmonyOS Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     color: #ffffff;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* 极简风格导航栏 */
@@ -26,16 +29,17 @@ body {
 }
 
 .nav-container {
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 20px 30px;
+    padding: 20px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .nav-left {
-    flex: 1;
+    flex: 0 0 auto;
 }
 
 .logo {
@@ -306,7 +310,9 @@ h1 {
 /* 响应式设计 */
 @media (max-width: 768px) {
     .nav-container {
-        padding: 15px 20px;
+        padding: 15px 15px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .nav-right {
@@ -316,6 +322,22 @@ h1 {
     .nav-link {
         font-size: 13px;
     }
+}
+
+/* 竖向显示屏优化 */
+@media (max-width: 600px) {
+    .nav-container {
+        padding: 12px 15px;
+    }
+    
+    .logo {
+        font-size: 16px;
+    }
+    
+    .menu-toggle {
+        font-size: 12px;
+    }
+}
 
     .main-content {
         padding: 60px 20px;
@@ -362,12 +384,18 @@ h1 {
 }
 
 /* 版权信息样式 */
+main {
+    flex: 1;
+}
+
 .footer {
     width: 100%;
-    padding: 40px 30px;
+    padding: 30px 20px;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 60px;
+    margin-top: auto;
+    margin-bottom: 0;
+    box-sizing: border-box;
 }
 
 .footer-text {
@@ -376,12 +404,13 @@ h1 {
     color: rgba(255, 255, 255, 0.5);
     font-family: 'HarmonyOS Sans', sans-serif;
     line-height: 1.6;
+    text-align: center;
+    width: 100%;
 }
 
 @media (max-width: 768px) {
     .footer {
-        padding: 30px 20px;
-        margin-top: 40px;
+        padding: 25px 15px;
     }
     
     .footer-text {

@@ -9,36 +9,20 @@
     <link rel="stylesheet" href="style.css">
     <style>
         .architecture-content {
-            max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
-            padding: 80px 30px 40px 30px;
+            padding: 80px 20px;
             box-sizing: border-box;
-        }
-        
-        .architecture-footer-text {
-            font-size: 12px;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.5);
-            font-family: 'HarmonyOS Sans', sans-serif;
-            line-height: 1.6;
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 0;
-        }
-        
-        @media (max-width: 768px) {
-            .architecture-footer-text {
-                font-size: 11px;
-                margin-top: 40px;
-            }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .architecture-grid-wrapper {
-            width: calc((1200px - 60px) * 0.8);
-            max-width: 100%;
-            margin-left: 0;
-            margin-right: auto;
-            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .architecture-grid {
@@ -46,12 +30,58 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
             width: 100%;
+            max-width: 100%;
             box-sizing: border-box;
         }
         
-        @media (max-width: 1260px) {
-            .architecture-grid-wrapper {
-                width: 100%;
+        /* 小屏幕 - 保持3列，调整间距和字体 */
+        @media (max-width: 799px) {
+            .architecture-content {
+                padding: 60px 20px 40px 20px;
+            }
+
+            .architecture-grid {
+                gap: 10px;
+            }
+
+            .architecture-item {
+                aspect-ratio: auto;
+            }
+
+            .architecture-title {
+                font-size: 12px;
+            }
+            
+            .architecture-date {
+                font-size: 10px;
+            }
+
+            .architecture-description {
+                font-size: 11px;
+            }
+            
+        }
+        
+        /* 竖向显示屏优化 */
+        @media (max-width: 480px) {
+            .architecture-content {
+                padding: 40px 15px 30px 15px;
+            }
+            
+            .architecture-grid {
+                gap: 8px;
+            }
+            
+            .architecture-title {
+                font-size: 11px;
+            }
+            
+            .architecture-date {
+                font-size: 9px;
+            }
+            
+            .architecture-description {
+                font-size: 10px;
             }
         }
 
@@ -59,11 +89,12 @@
             display: flex;
             flex-direction: column;
             aspect-ratio: 1;
+            min-width: 0;
         }
 
         .architecture-image {
             width: 100%;
-            height: auto;
+            height: 100%;
             aspect-ratio: 1;
             object-fit: cover;
             margin-bottom: 8px;
@@ -107,28 +138,6 @@
             font-family: 'HarmonyOS Sans', sans-serif;
         }
 
-        @media (max-width: 768px) {
-            .architecture-content {
-                padding: 60px 20px;
-            }
-
-            .architecture-grid-wrapper {
-                width: 100%;
-            }
-
-            .architecture-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .architecture-item {
-                aspect-ratio: auto;
-            }
-
-            .architecture-description {
-                font-size: 12px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -165,12 +174,14 @@
                 <!-- 建筑项目将通过JavaScript动态加载 -->
             </div>
         </div>
-        
-        <!-- 版权信息 -->
-        <div class="architecture-footer-text">
+    </main>
+    
+    <!-- 版权信息 -->
+    <footer class="footer">
+        <div class="footer-text">
             © <span id="copyright-year">2025</span> GaryHou. All rights reserved. For reprint permissions, please contact.
         </div>
-    </main>
+    </footer>
 
     <script src="script.js"></script>
     <script src="architecture-data.js"></script>
