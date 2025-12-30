@@ -11,8 +11,26 @@
         .architecture-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 30px 0 30px;
+            padding: 80px 30px 40px 30px;
             box-sizing: border-box;
+        }
+        
+        .architecture-footer-text {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'HarmonyOS Sans', sans-serif;
+            line-height: 1.6;
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .architecture-footer-text {
+                font-size: 11px;
+                margin-top: 40px;
+            }
         }
 
         .architecture-grid-wrapper {
@@ -20,7 +38,7 @@
             max-width: 100%;
             margin-left: 0;
             margin-right: auto;
-            margin-bottom: 60px;
+            margin-bottom: 0;
         }
 
         .architecture-grid {
@@ -147,14 +165,12 @@
                 <!-- 建筑项目将通过JavaScript动态加载 -->
             </div>
         </div>
-    </main>
-
-    <!-- 版权信息 -->
-    <footer class="footer">
-        <div class="footer-text">
+        
+        <!-- 版权信息 -->
+        <div class="architecture-footer-text">
             © <span id="copyright-year">2025</span> GaryHou. All rights reserved. For reprint permissions, please contact.
         </div>
-    </footer>
+    </main>
 
     <script src="script.js"></script>
     <script src="architecture-data.js"></script>
