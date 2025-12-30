@@ -48,10 +48,11 @@
             aspect-ratio: 1;
             object-fit: cover;
             margin-bottom: 8px;
-            background: #1a1a1a;
+            background: transparent;
             filter: grayscale(100%);
             transition: filter 0.3s ease;
             display: block;
+            opacity: 1;
         }
 
         .architecture-item:hover .architecture-image {
@@ -210,18 +211,14 @@
                 img.alt = item.title;
                 img.src = item.imagePath;
                 
-                // 加载原图后压缩
+                // 确保图片加载完成后再显示，避免闪烁
                 img.onload = function() {
-                    if (this.naturalWidth && this.naturalHeight) {
-                        try {
-                            compressImage(this, function(compressedUrl) {
-                                img.src = compressedUrl;
-                            });
-                        } catch (e) {
-                            console.error('图片压缩失败:', e);
-                        }
-                    }
+                    this.style.opacity = '1';
                 };
+                
+                // 初始设置为透明，加载完成后显示
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
                 
                 const titleDiv = document.createElement('div');
                 titleDiv.className = 'architecture-title';
