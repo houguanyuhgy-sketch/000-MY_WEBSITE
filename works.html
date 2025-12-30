@@ -10,7 +10,7 @@
     <style>
         .works-container {
             width: 100%;
-            height: calc(100vh - 61px);
+            height: calc(100vh - 61px - 100px);
             margin-top: 61px;
             display: flex;
             justify-content: center;
@@ -82,9 +82,20 @@
         <canvas id="works-canvas"></canvas>
     </div>
 
+    <!-- 版权信息 -->
+    <footer class="footer">
+        <div class="footer-text">
+            © <span id="copyright-year">2025</span> GaryHou. All rights reserved. For reprint permissions, please contact.
+        </div>
+    </footer>
+
     <script src="script.js"></script>
     <script src="works-data.js"></script>
     <script src="works.js"></script>
+    <script>
+        // 自动更新版权年份
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
 
